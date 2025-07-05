@@ -1,37 +1,43 @@
-let newnum = true;
-let first = true;
-let res = 0;
-let firstnumber = 0;
-let secondnumber = 0;
+res = 0;
+prev = 0;
+active = "";
 
 function btnmg(event) {
-  let btn = event.target.textContent;
-  if (!isNaN(parseInt(btn))) {
-    btn = parseInt(btn);
-    if (newnum == true) {
-      if (first == true) {
-        addtofirst(btn);
-      } else {
-        addtosecond(btn);
-      }
-    }
+  btn = event.target.textContent;
+  if (!parseInt(btn) && btn != "0") {
+    operators(btn);
   } else {
-    operator(btn);
+    btn = parseInt(btn);
+    res = res * 10 + btn;
+    print(res);
   }
 }
 
-function addtofirst(a) {
-  firstnumber = firstnumber + 10 * a;
+function print(txt) {
+  display = document.getElementById("txt");
+  display.textContent = txt;
 }
 
-function addtosecond(a) {
-  secondnumber = secondnumber + 10 * a;
-}
-
-function operator(fun) {
-  if (fun === "+") {
-    res = firstnumber + secondnumber;
-    console.log(res);
-    first = false;
+function operators(inp) {
+  if (["+", "-", "*", "/"].includes(inp)) {
+    active = inp;
+    prev = res;
+    res = 0;
+    print(res);
+  }
+  if (inp == "=") {
+    if (active == "+") {
+      res = prev + res;
+    }
+    if (active == "-") {
+      res = prev - res;
+    }
+    if (active == "*") {
+      res = prev * res;
+    }
+    if (active == "/") {
+      res = prev / res;
+    }
+    print(res);
   }
 }
