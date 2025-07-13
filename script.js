@@ -23,8 +23,9 @@ function operators(inp) {
     active = inp;
     prev = res;
     res = 0;
-    print(res);
+    print("");
   }
+
   if (inp == "=") {
     if (active == "+") {
       res = prev + res;
@@ -39,5 +40,21 @@ function operators(inp) {
       res = prev / res;
     }
     print(res);
+  }
+
+  if (inp == "CLEAR") {
+    res = 0;
+    active = "";
+    prev = 0;
+    print(" ");
+  }
+
+  if (inp == "BackSpace") {
+    if (Number.isInteger(res)) {
+      res = Math.round(res / 10);
+      print(res);
+    } else {
+      print(res);
+    }
   }
 }

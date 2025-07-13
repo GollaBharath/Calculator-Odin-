@@ -40,6 +40,9 @@ h1 {
 .screen {
   max-height: 80px;
   min-height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .screen h2 {
@@ -48,6 +51,11 @@ h1 {
   border: 2px solid black;
   min-height: 65px;
   min-width: 300px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 50px;
+  padding-right: 10px;
 }
 
 .dels button {
