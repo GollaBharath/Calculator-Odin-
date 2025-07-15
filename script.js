@@ -5,12 +5,33 @@ active = "";
 function btnmg(event) {
   btn = event.target.textContent;
   if (!parseInt(btn) && btn != "0") {
-    operators(btn);
+    if (btn === ".") {
+      res = res + "";
+      if (!res.includes(".")) {
+        res = decimal(res);
+        print(res);
+      } else {
+        print(res);
+      }
+    } else {
+      operators(btn);
+    }
   } else {
     btn = parseInt(btn);
-    res = res * 10 + btn;
+    if (Number.isInteger(res)) {
+      res = res * 10 + btn;
+    } else {
+      res = res + "";
+      let dec = 0;
+      res = res + btn * 10 ** dec;
+    }
     print(res);
   }
+}
+
+function decimal(num) {
+  num = num + ".";
+  return num;
 }
 
 function print(txt) {
@@ -19,6 +40,7 @@ function print(txt) {
 }
 
 function operators(inp) {
+  res = parseFloat(res);
   if (["+", "-", "*", "/"].includes(inp)) {
     active = inp;
     prev = res;
@@ -39,7 +61,16 @@ function operators(inp) {
     if (active == "/") {
       res = prev / res;
     }
-    print(res);
+    try {
+      res = res + "";
+      let dec = res.split(".")[1].length;
+      if (dec >= 3) {
+        dec = dec - 3;
+        res = res.slice(0, -dec);
+      }
+    } finally {
+      print(res);
+    }
   }
 
   if (inp == "CLEAR") {
@@ -54,6 +85,9 @@ function operators(inp) {
       res = Math.round(res / 10);
       print(res);
     } else {
+      res = res + "";
+      res = res.slice(0, -1);
+      res = parseFloat(res);
       print(res);
     }
   }
