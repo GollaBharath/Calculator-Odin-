@@ -1,6 +1,6 @@
-res = 0;
-prev = 0;
-active = "";
+let res = 0;
+let prev = 0;
+let active = "";
 
 function btnmg(event) {
   btn = event.target.textContent;
@@ -61,16 +61,15 @@ function operators(inp) {
     if (active == "/") {
       res = prev / res;
     }
-    try {
+    if (!Number.isInteger(res)) {
       res = res + "";
       let dec = res.split(".")[1].length;
       if (dec >= 3) {
         dec = dec - 3;
         res = res.slice(0, -dec);
       }
-    } finally {
-      print(res);
     }
+    print(res);
   }
 
   if (inp == "CLEAR") {
@@ -92,3 +91,43 @@ function operators(inp) {
     }
   }
 }
+
+// keyboard support
+document.addEventListener("keydown", function (event) {
+  if ("1234567890./*-+=".includes(event.key)) {
+    btn = event.key;
+    if (!parseInt(btn) && btn != "0") {
+      if (btn === ".") {
+        res = res + "";
+        if (!res.includes(".")) {
+          res = decimal(res);
+          print(res);
+        } else {
+          print(res);
+        }
+      } else {
+        operators(btn);
+      }
+    } else {
+      btn = parseInt(btn);
+      if (Number.isInteger(res)) {
+        res = res * 10 + btn;
+      } else {
+        res = res + "";
+        let dec = 0;
+        res = res + btn * 10 ** dec;
+      }
+      print(res);
+    }
+  } else {
+    if (event.key === "Delete") {
+      operators("CLEAR");
+    }
+    if (event.key === "Backspace") {
+      operators("BackSpace");
+    }
+    if (event.key === "Enter") {
+      operators("=");
+    }
+  }
+});
