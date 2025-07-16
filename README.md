@@ -2,7 +2,7 @@
 
 The fianl boss of Foundations!!! I am out to get you - Calc.
 
-- Live Preview is [here]()
+- Live Preview is [here](https://gollabharath.github.io/Calculator-Odin-/)
 
 ---
 
