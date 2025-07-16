@@ -94,8 +94,16 @@ function operators(inp) {
 
 // keyboard support
 document.addEventListener("keydown", function (event) {
-  if ("1234567890./*-+=".includes(event.key)) {
-    btn = event.key;
+  if ("1234567890./*-+=DeleteBackspaceEnter".includes(event.key)) {
+    if (event.key === "Delete") {
+      btn = "CLEAR";
+    } else if (event.key === "Backspace") {
+      btn = "BackSpace";
+    } else if (event.key === "Enter") {
+      btn = "=";
+    } else {
+      btn = event.key;
+    }
     if (!parseInt(btn) && btn != "0") {
       if (btn === ".") {
         res = res + "";
@@ -118,16 +126,6 @@ document.addEventListener("keydown", function (event) {
         res = res + btn * 10 ** dec;
       }
       print(res);
-    }
-  } else {
-    if (event.key === "Delete") {
-      operators("CLEAR");
-    }
-    if (event.key === "Backspace") {
-      operators("BackSpace");
-    }
-    if (event.key === "Enter") {
-      operators("=");
     }
   }
 });

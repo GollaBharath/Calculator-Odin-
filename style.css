@@ -13,6 +13,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: antiquewhite;
 }
 
 h1 {
@@ -25,16 +26,17 @@ h1 {
 
 .OuterBody {
   margin: 5vh;
-  max-width: 320px;
-  max-height: 480px;
-  min-width: 320px;
-  min-height: 480px;
+  max-width: 330px;
+  max-height: 490px;
+  min-width: 330px;
+  min-height: 490px;
   border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: black;
+  border-radius: 12px;
 }
 
 .screen {
@@ -66,6 +68,8 @@ h1 {
 .btns {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 button {
